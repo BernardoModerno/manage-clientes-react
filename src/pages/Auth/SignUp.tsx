@@ -29,7 +29,7 @@ export default function SignUp() {
                                     <InputLeftElement 
                                     pointerEvents="none"
                                     children={<AtSignIcon color="gray.300" />}/>
-                                <Input type="email" placeholder="Endereço de email" />
+                                    <Input type="email" placeholder="Endereço de email" />
                                 </InputGroup>
                             </FormControl>
                             <FormControl>
