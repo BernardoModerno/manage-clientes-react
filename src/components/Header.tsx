@@ -1,7 +1,11 @@
 import { Button, Container, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 
-export default function Header() {
+interface HeaderProps {
+    onLogout: () => void
+}
+
+export default function Header(props: HeaderProps) {
     return (
         <Flex backgroundColor="whiteAlpha.900" boxShadow="md">
             <Container maxW="container.lg">
@@ -9,7 +13,9 @@ export default function Header() {
                 <Image src={logo} alt="Logo" boxSize="40px" objectFit="contain" marginRight={2} />
                 <Text fontSize="xl" fontWeight="500">Cadastro de Clientes</Text>
                 <Stack style={{ marginLeft: "auto" }}>
-                    <Button variant="link">Sair</Button>
+                    <Button variant="link" onClick={() => props.onLogout()} >
+                        Sair
+                    </Button>
                 </Stack>
                </Stack>
             </Container>

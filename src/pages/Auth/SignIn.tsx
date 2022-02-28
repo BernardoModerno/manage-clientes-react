@@ -1,8 +1,19 @@
 import { AtSignIcon, LockIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, FormControl, FormHelperText, Heading, Image, Input, InputGroup, InputLeftElement, Link, Stack } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import RouterLink from "../../components/RouterLink";
 
 export default function SignIn() {
+
+    const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
+
+    const login = () => {
+        navigate("/home");
+    }
+
     return (
         <Flex 
           flexDirection="column"
@@ -16,7 +27,7 @@ export default function SignIn() {
                 <Image src={logo} alt="Logo" boxSize="80px" objectFit="contain" />
                 <Heading>Cadastro de Clientes</Heading>
                 <Box minW={{ base: "90%", md: "470px" }}>
-                    <form>
+                    <form onSubmit={handleSubmit(login)} >
                         <Stack
                             spacing={4}
                             p="1rem"
@@ -29,7 +40,7 @@ export default function SignIn() {
                                     <InputLeftElement 
                                     pointerEvents="none"
                                     children={<AtSignIcon color="gray.300" />}/>
-                                <Input type="email" placeholder="Endereço de email" />
+                                <Input type="email" placeholder="Endereço de email" {...register("email")} />
                                 </InputGroup>
                             </FormControl>
                             <FormControl>
@@ -37,7 +48,7 @@ export default function SignIn() {
                                     <InputLeftElement 
                                     pointerEvents="none"
                                     children={<LockIcon color="gray.300" />}/>
-                                <Input type="password" placeholder="Senha" />
+                                <Input type="password" placeholder="Senha" {...register("password")} />
                                 </InputGroup>
                                 <FormHelperText textAlign="right">
                                     <Link>Esqueceu a senha?</Link>
@@ -51,7 +62,10 @@ export default function SignIn() {
                 </Box>
             </Stack>
             <Box>
-                Ainda não possui cadastro? <Link color="green">Cadastre-se</Link>
+                Ainda não possui cadastro?{" "} 
+                    <RouterLink to="/signup">
+                        Cadastre-se
+                    </RouterLink>
             </Box>
         </Flex>
     );
