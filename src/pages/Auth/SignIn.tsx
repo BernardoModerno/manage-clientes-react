@@ -11,6 +11,11 @@ export default function SignIn() {
     const navigate = useNavigate();
 
     const login = () => {
+
+        // verificar se os dados de email e senha foram preenchidos
+        // requisição para o backend
+        // em caso de sucesso. or para a rota home
+        localStorage.setItem("token", "token");
         navigate("/home");
     }
 
